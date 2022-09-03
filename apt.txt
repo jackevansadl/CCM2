@@ -1,5 +1,0 @@
-build-essential
-procps
-curl
-file
-git
