@@ -1,24 +1,22 @@
 # syntax=docker/dockerfile:experimental
 
-FROM linuxbrew@sha256:8e005236f950011559384162879aa59b3d91d2a699cc78ae954238b6173b5e24 as base
+FROM python:3.9-slim-buster
 
-# USER root
-# RUN apt-get update \
-#     && apt-get -y upgrade \
-#     && apt install -y python3 python3-pip \
-#     && apt-get clean \
-#     && rm -rf /var/lib/apt/lists/*
+USER root
+RUN apt-get update \
+    && apt-get -y upgrade \
+    && apt install -y python3-dev python3-pip git ssh libopenblas-dev libxc-dev libscalapack-mpi-dev libfftw3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-FROM python:3.9-slim-buster AS base2
-
-# RUN python3 -m pip install --upgrade pip
-
-RUN python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub gpaw
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
 ENV HOME /home/${NB_USER}
+RUN export PATH=$PATH:/home/${NB_USER}/.local/bin
 
 RUN adduser --disabled-password \
     --gecos "Default user" \
