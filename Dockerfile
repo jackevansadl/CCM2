@@ -5,7 +5,7 @@ FROM python:3.9-slim-buster
 USER root
 RUN apt-get update \
     && apt-get -y upgrade \
-    && apt install -y python3-dev python3-pip git ssh libopenblas-dev libxc-dev libscalapack-mpi-dev libfftw3-dev texlive-xetex zlib-dev \
+    && apt install -y python3-dev python3-pip git ssh libopenblas-dev libxc-dev libscalapack-mpi-dev libfftw3-dev texlive-xetex zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
