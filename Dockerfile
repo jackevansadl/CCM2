@@ -10,7 +10,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub gpaw
+RUN python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub openmm matplotlib nglview numpy pandas mdtraj
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
@@ -28,4 +28,3 @@ USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 WORKDIR /tmp
-RUN printf "y" | gpaw install-data .
