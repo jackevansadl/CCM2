@@ -11,7 +11,6 @@ RUN apt-get update \
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install cython
-RUN python3 -m pip install git+https://github.com/scipy/scipy
 RUN python3 -m pip install git+https://github.com/mdtraj/mdtraj
 RUN python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub openmm matplotlib nglview pandas 
 ARG NB_USER=jovyan
