@@ -11,4 +11,4 @@ dependencies:
   - pandas
   - nglview
   - matplotlib
-  -texlive-core
+  - texlive-core
