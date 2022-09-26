@@ -10,7 +10,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --no-cache-dir mdtraj notebook jupyterlab jupyterhub openmm matplotlib nglview numpy pandas 
+RUN python3 -m pip install --no-cache-dir git+https://github.com/scipy/scipy
+RUN python3 -m pip install --no-cache-dir git+https://github.com/mdtraj/mdtraj
+RUN python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub openmm matplotlib nglview pandas 
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
